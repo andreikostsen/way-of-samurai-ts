@@ -1,0 +1,28 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 10px;
+}
+
+.items {
+
+    grid-column: 1;
+    grid-row: 1;
+    background-color: red;
+    padding: 20px;
+}
+
+
+
+.item {
+    color: aliceblue;
+}
+
+.item.active {
+    color: gold;
+}
+
+.messages {
+    grid-column: 2/4;
+    grid-row: 1;
+}

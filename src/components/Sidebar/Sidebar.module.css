@@ -1,0 +1,14 @@
+.item {
+  color: blueviolet;
+}
+
+.item a.active{
+	color: crimson;
+}
+
+nav {
+	grid-column: 1;
+	grid-row: 2/4;
+	background-color: yellow;
+	padding: 20px;
+}
