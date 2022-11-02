@@ -1,17 +1,21 @@
 import React from 'react'
 import MyPosts from "./MyPosts/MyPosts";
-import {PostDataArr} from "../../index";
+import {PostDataArr} from "../../redux/state";
 
 type PropsType = {
 
-  postData: PostDataArr
+  state: {
+         postData: PostDataArr
+  }
 
 }
 
 const Profile = (props: PropsType) => {
   return (
-    <MyPosts postData={props.postData}/>
+    <MyPosts postData={props.state.postData}/>
   )
 }
 
 export default Profile;
+
+

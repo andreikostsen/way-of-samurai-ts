@@ -1,5 +1,5 @@
 import Post from "./Posts/Post";
-import {PostDataArr} from "../../../index";
+import {PostDataArr} from "../../../redux/state";
 import React from 'react'
 
 type PropsType = {

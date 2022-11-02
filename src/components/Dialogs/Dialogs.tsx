@@ -1,13 +1,19 @@
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsTypeArr, MessagesTypeArr} from "../../index";
+import {DialogsTypeArr, MessagesTypeArr} from "../../redux/state";
 import React from 'react'
 
 type PropsType = {
 
-    dialogs: DialogsTypeArr,
-    messages: MessagesTypeArr,
+    state: {
+        dialogs: DialogsTypeArr,
+        messages: MessagesTypeArr
+
+    }
+
+
+
 
 }
 
@@ -20,7 +26,7 @@ type PropsType = {
             <div className={s.wrapper}>
                 <div className={s.items}>
 
-                    {props.dialogs.map(n=>
+                    {props.state.dialogs.map(n=>
                         <DialogItem name={n.name}/>
 
                     )}
@@ -29,7 +35,7 @@ type PropsType = {
                 </div>
                 <div className={s.messages}>
 
-                    {props.messages.map(m=><Message message={m.message}/>)}
+                    {props.state.messages.map(m=><Message message={m.message}/>)}
 
 
                 </div>

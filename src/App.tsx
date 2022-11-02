@@ -4,15 +4,13 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {DialogsTypeArr, MessagesTypeArr, PostDataArr} from "./index";
+import {StateType} from "./redux/state";
 import Header from "./components/Header/Header";
 
 
 type PropsType = {
 
-    postData: PostDataArr,
-    dialogs: DialogsTypeArr,
-    messages: MessagesTypeArr,
+    state: StateType
 
 }
 
@@ -27,8 +25,8 @@ const App = (props:PropsType) => {
                 <Sidebar/>
                 <Routes>
 
-                    <Route path="/profile"  element={<Profile postData={props.postData}/>} />
-                    <Route path="/dialogs"  element={<Dialogs dialogs={props.dialogs} messages={props.messages}/>} />
+                    <Route path="/profile"  element={<Profile state={props.state.profilePage}/>} />
+                    <Route path="/dialogs"  element={<Dialogs state={props.state.messagesPage}/>} />
                 </Routes>
 
             </div>
