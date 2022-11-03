@@ -8,12 +8,9 @@ type PropsType = {
 
     state: {
         dialogs: DialogsTypeArr,
-        messages: MessagesTypeArr
+       messages: MessagesTypeArr
 
     }
-
-
-
 
 }
 

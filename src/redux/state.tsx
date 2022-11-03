@@ -58,5 +58,18 @@ export const state: StateType = {
 
     }
 
+}
+
+export const AddPost=(post:string)=> {
+
+    let newPost = {id:5, message: post}
+
+    state.messagesPage.messages.push(newPost)
+
+    
+
+    console.log(newPost)
+    console.log(state.messagesPage.messages)
+
 
 }

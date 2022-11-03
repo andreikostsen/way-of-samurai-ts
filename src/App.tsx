@@ -11,6 +11,8 @@ import Header from "./components/Header/Header";
 type PropsType = {
 
     state: StateType
+    addPost: (post:string)=>void;
+
 
 }
 
@@ -25,7 +27,7 @@ const App = (props:PropsType) => {
                 <Sidebar/>
                 <Routes>
 
-                    <Route path="/profile"  element={<Profile state={props.state.profilePage}/>} />
+                    <Route path="/profile"  element={<Profile state={props.state.profilePage} addPost={props.addPost}/>} />
                     <Route path="/dialogs"  element={<Dialogs state={props.state.messagesPage}/>} />
                 </Routes>
 
