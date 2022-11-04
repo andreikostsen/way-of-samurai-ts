@@ -25,7 +25,7 @@ const MyPosts = (props: PropsType) => {
       <h3>My posts</h3>
       <article>
 
-          <div><textarea onChange={onChangeHandler}></textarea></div>
+          <div><textarea onChange={onChangeHandler} value={post}></textarea></div>
           <div><button onClick={addPost}>Add Post</button></div>
         {props.postData.map(p=><Post id={p.id} message={p.message}/>)}
 

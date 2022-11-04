@@ -1,3 +1,4 @@
+import {rerenderEntireTree} from "../index";
 
 export type DialogsTypeArr = Array<DialogsType>
 
@@ -32,44 +33,46 @@ export type StateType = {
 }
 
 
-export const state: StateType = {
 
-    messagesPage: {
 
-        dialogs: [
-            {id: 1, name: "Andrei"},
-            {id: 2, name: "Valera"},
-        ],
-        messages: [
-            {id: 1, message: "Hello"},
-            {id: 2, message: "How are you"},
-        ],
+export const state:StateType = (
 
-    },
+    {
 
-    profilePage: {
+        messagesPage: {
 
-        postData: [
-            {id: 1, message: "HI"},
-            {id: 2, message: "How are you?"},
-            {id: 3, message: "Thanks"}
+            dialogs: [
+                {id: 1, name: "Andrei"},
+                {id: 2, name: "Valera"},
+            ],
+            messages: [
+                {id: 1, message: "Hello"},
+                {id: 2, message: "How are you"},
+            ],
 
-        ]
+        },
+
+        profilePage: {
+
+            postData: [
+                {id: 1, message: "HI"},
+                {id: 2, message: "How are you?"},
+                {id: 3, message: "Thanks"}
+
+            ]
+
+        }
 
     }
-
-}
+)
 
 export const AddPost=(post:string)=> {
 
-    let newPost = {id:5, message: post}
+    let newPost:PostDataType = {id:5, message: post}
 
-    state.messagesPage.messages.push(newPost)
+    state.profilePage.postData.push(newPost)
 
-    
-
-    console.log(newPost)
-    console.log(state.messagesPage.messages)
+    rerenderEntireTree()
 
 
 }
