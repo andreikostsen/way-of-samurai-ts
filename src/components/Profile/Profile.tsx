@@ -4,16 +4,19 @@ import {PostDataArr} from "../../redux/state";
 
 type PropsType = {
 
-  state: {postData: PostDataArr};
-    addPost: (post:string)=>void;
-
+  state: {
+    postData: PostDataArr,
+    textFromTextArea: string
+  };
+  addPost: () => void;
+  updateText: (updatedText: string) => void;
 
 
 }
 
 const Profile = (props: PropsType) => {
   return (
-    <MyPosts postData={props.state.postData} addPost={props.addPost}/>
+      <MyPosts profilePage={props.state} addPost={props.addPost} updateText={props.updateText}/>
   )
 }
 

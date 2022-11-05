@@ -28,7 +28,8 @@ export type StateType = {
         messages: MessagesTypeArr,
     }
     profilePage: {
-        postData: PostDataArr
+        postData: PostDataArr,
+        textFromTextArea: string
     }
 }
 
@@ -59,20 +60,32 @@ export const state:StateType = (
                 {id: 2, message: "How are you?"},
                 {id: 3, message: "Thanks"}
 
-            ]
+            ],
+
+            textFromTextArea: ""
 
         }
 
     }
 )
 
-export const AddPost=(post:string)=> {
+export const AddPost=()=> {
+
+    let post = state.profilePage.textFromTextArea;
 
     let newPost:PostDataType = {id:5, message: post}
 
     state.profilePage.postData.push(newPost)
+    state.profilePage.textFromTextArea = ""
 
     rerenderEntireTree()
 
+
+}
+
+export const UpdateText=(updatedText:string)=>{
+
+    state.profilePage.textFromTextArea = updatedText
+    rerenderEntireTree()
 
 }

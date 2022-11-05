@@ -3,19 +3,29 @@ import {PostDataArr} from "../../../redux/state";
 import React, {ChangeEvent, useState} from 'react'
 
 type PropsType = {
-    postData: PostDataArr
-    addPost: (post:string)=>void;
+    profilePage: {
+        postData: PostDataArr,
+        textFromTextArea: string
+    }
+
+    addPost: ()=>void;
+    updateText: (updatedText: string) =>void;
 }
 
 const MyPosts = (props: PropsType) => {
 
-    const [post, setPost] = useState<string>("")
-    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=> {setPost(e.currentTarget.value)}
+
+    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=> {
+
+        let updatedText = e.currentTarget.value
+
+        props.updateText(updatedText)
+
+    }
 
     const addPost = () => {
+      props.addPost()
 
-        props.addPost(post)
-        console.log(post)
 
     }
 
@@ -25,9 +35,9 @@ const MyPosts = (props: PropsType) => {
       <h3>My posts</h3>
       <article>
 
-          <div><textarea onChange={onChangeHandler} value={post}></textarea></div>
+          <div><textarea onChange={onChangeHandler} value={props.profilePage.textFromTextArea}></textarea></div>
           <div><button onClick={addPost}>Add Post</button></div>
-        {props.postData.map(p=><Post id={p.id} message={p.message}/>)}
+        {props.profilePage.postData.map(p=><Post id={p.id} message={p.message}/>)}
 
       </article>
       </div>
