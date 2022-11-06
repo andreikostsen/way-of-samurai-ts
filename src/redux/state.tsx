@@ -1,4 +1,3 @@
-import {rerenderEntireTree} from "../index";
 
 export type DialogsTypeArr = Array<DialogsType>
 
@@ -31,6 +30,13 @@ export type StateType = {
         postData: PostDataArr,
         textFromTextArea: string
     }
+}
+
+
+export type ObserverType = {
+
+    observer: ()=>void
+
 }
 
 
@@ -69,6 +75,8 @@ export const state:StateType = (
     }
 )
 
+let rerenderEntireTree=()=>{}
+
 export const AddPost=()=> {
 
     let post = state.profilePage.textFromTextArea;
@@ -80,7 +88,6 @@ export const AddPost=()=> {
 
     rerenderEntireTree()
 
-
 }
 
 export const UpdateText=(updatedText:string)=>{
@@ -88,4 +95,8 @@ export const UpdateText=(updatedText:string)=>{
     state.profilePage.textFromTextArea = updatedText
     rerenderEntireTree()
 
+}
+
+export let subscribe=(observer:()=>void)=>{
+    rerenderEntireTree = observer
 }
