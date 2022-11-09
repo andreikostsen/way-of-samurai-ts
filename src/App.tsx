@@ -4,18 +4,20 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {StateType, UpdateText} from "./redux/state";
+
 import Header from "./components/Header/Header";
+import {StateType} from "./redux/store";
 
 
 type PropsType = {
 
-    state: StateType
-    addPost: ()=>void;
-    updateText: (updatedText: string) =>void;
+    state: StateType,
+    AddPost: ()=>void,
+    UpdateText: (updatedText:string)=>void,
 
 
 }
+
 
 
 
@@ -28,11 +30,8 @@ const App = (props:PropsType) => {
                 <Sidebar/>
                 <Routes>
 
-                    <Route path="/profile"  element={<Profile
-                        state={props.state.profilePage}
-                        addPost={props.addPost}
-                        updateText={props.updateText}/>} />
-                    <Route path="/dialogs"  element={<Dialogs state={props.state.messagesPage}/>} />
+                    <Route path="/profile"  element={<Profile state={props.state} AddPost={props.AddPost} UpdateText={props.UpdateText}/>} />
+                    {/*<Route path="/dialogs"  element={<Dialogs state={props.messagesPage}/>} />*/}
                 </Routes>
 
             </div>
