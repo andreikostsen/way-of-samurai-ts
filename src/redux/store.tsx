@@ -33,17 +33,19 @@ export type StateType = {
 }
 
 export type StoreType = {
-    state: StateType,
+    _state: StateType,
+    _rerenderEntireTree: ()=>void,
+    getState:()=>StateType,
     AddPost: ()=>void,
     UpdateText: (updatedText:string)=>void,
-    rerenderEntireTree: ()=>void,
+
     subscribe: (observer:()=>void)=>void
 }
 
 
 
 export let store:StoreType = {
-    state: {
+    _state: {
         messagesPage: {
             dialogs: [
                 {id: 1, name: "Andrei"},
@@ -63,19 +65,23 @@ export let store:StoreType = {
             textFromTextArea: ""
         },
     },
-    rerenderEntireTree() { },
+    _rerenderEntireTree() { },
+    getState(){
+        return this._state
+    },
+
     AddPost() {
-        let post = this.state.profilePage.textFromTextArea;
+        let post = this._state.profilePage.textFromTextArea;
         let newPost: PostDataType = {id: 5, message: post}
-        this.state.profilePage.postData.push(newPost)
-        this.state.profilePage.textFromTextArea = ""
-        this.rerenderEntireTree()
+        this._state.profilePage.postData.push(newPost)
+        this._state.profilePage.textFromTextArea = ""
+        this._rerenderEntireTree()
     },
     UpdateText(updatedText: string) {
-        this.state.profilePage.textFromTextArea = updatedText
-        this.rerenderEntireTree()
+        this._state.profilePage.textFromTextArea = updatedText
+        this._rerenderEntireTree()
     },
     subscribe(observer: () => void) {
-        this.rerenderEntireTree = observer
+        this._rerenderEntireTree = observer
     }
 }
