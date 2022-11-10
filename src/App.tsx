@@ -31,7 +31,7 @@ const App = (props:PropsType) => {
                 <Routes>
 
                     <Route path="/profile"  element={<Profile state={props.state} AddPost={props.AddPost} UpdateText={props.UpdateText}/>} />
-                    {/*<Route path="/dialogs"  element={<Dialogs state={props.messagesPage}/>} />*/}
+                    <Route path="/dialogs"  element={<Dialogs state={props.state.messagesPage}/>} />
                 </Routes>
 
             </div>
