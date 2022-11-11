@@ -1,7 +1,7 @@
 import Post from "./Posts/Post";
 import {PostDataArr} from "../../../redux/state";
 import React, {ChangeEvent, useState} from 'react'
-import {StateType} from "../../../redux/store";
+import {ActionType, StateType} from "../../../redux/store";
 
 // type PropsType = {
 //     profilePage: {
@@ -15,8 +15,7 @@ import {StateType} from "../../../redux/store";
 type PropsType = {
 
     state: StateType,
-    AddPost: ()=>void,
-    UpdateText: (updatedText:string)=>void,
+    dispatch: (action:ActionType)=>void,
 
 
 }
@@ -27,12 +26,13 @@ const MyPosts = (props: PropsType) => {
 
         let updatedText = e.currentTarget.value
 
-        props.UpdateText(updatedText)
+        props.dispatch({type:"UPDATE-TEXT", updatedText: updatedText})
+
 
     }
 
     const addPost = () => {
-      props.AddPost()
+      props.dispatch({type:"ADD-POST"})
 
 
     }

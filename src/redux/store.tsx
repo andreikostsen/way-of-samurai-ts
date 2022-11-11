@@ -32,19 +32,24 @@ export type StateType = {
     }
 }
 
+export type ActionType={
+
+    type: string,
+    updatedText?: string
+
+
+}
+
 export type StoreType = {
     _state: StateType,
     _rerenderEntireTree: ()=>void,
     getState:()=>StateType,
-    AddPost: ()=>void,
-    UpdateText: (updatedText:string)=>void,
-
-    subscribe: (observer:()=>void)=>void
+    subscribe: (observer:()=>void)=>void,
+    dispatch: (action:ActionType)=>void,
 }
 
 
-
-export let store:StoreType = {
+export let store: StoreType = {
     _state: {
         messagesPage: {
             dialogs: [
@@ -65,23 +70,27 @@ export let store:StoreType = {
             textFromTextArea: ""
         },
     },
-    _rerenderEntireTree() { },
-    getState(){
+    _rerenderEntireTree() {
+    },
+    getState() {
         return this._state
-    },
-
-    AddPost() {
-        let post = this._state.profilePage.textFromTextArea;
-        let newPost: PostDataType = {id: 5, message: post}
-        this._state.profilePage.postData.push(newPost)
-        this._state.profilePage.textFromTextArea = ""
-        this._rerenderEntireTree()
-    },
-    UpdateText(updatedText: string) {
-        this._state.profilePage.textFromTextArea = updatedText
-        this._rerenderEntireTree()
     },
     subscribe(observer: () => void) {
         this._rerenderEntireTree = observer
+    },
+    dispatch(action: ActionType) {
+
+        if (action.type === "ADD-POST") {
+            let post = this._state.profilePage.textFromTextArea;
+            let newPost: PostDataType = {id: 5, message: post}
+            this._state.profilePage.postData.push(newPost)
+            this._state.profilePage.textFromTextArea = ""
+            this._rerenderEntireTree()
+        } else if (action.type === "UPDATE-TEXT", action.updatedText) {
+            this._state.profilePage.textFromTextArea = action.updatedText
+            this._rerenderEntireTree()
+        }
+
     }
 }
+
