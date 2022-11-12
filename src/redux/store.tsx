@@ -49,6 +49,7 @@ export type StoreType = {
 }
 
 
+
 export let store: StoreType = {
     _state: {
         messagesPage: {
@@ -94,3 +95,8 @@ export let store: StoreType = {
     }
 }
 
+export const updateTextActionCreator = (updatedText:string)=> (
+    {type:"UPDATE-TEXT", updatedText: updatedText}
+)
+
+export const addPostActionCreator = () => ({type:"ADD-POST"})
