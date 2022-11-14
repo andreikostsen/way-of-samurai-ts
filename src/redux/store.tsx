@@ -25,6 +25,7 @@ export type StateType = {
     messagesPage: {
         dialogs: DialogsTypeArr,
         messages: MessagesTypeArr,
+        textFromTextArea: string,
     }
     profilePage: {
         postData: PostDataArr,
@@ -35,7 +36,8 @@ export type StateType = {
 export type ActionType={
 
     type: string,
-    updatedText?: string
+    updatedText?: string,
+    updatedMessageText?:string
 
 
 }
@@ -61,6 +63,7 @@ export let store: StoreType = {
                 {id: 1, message: "Hello"},
                 {id: 2, message: "How are you"},
             ],
+            textFromTextArea: "",
         },
         profilePage: {
             postData: [
@@ -81,16 +84,36 @@ export let store: StoreType = {
     },
     dispatch(action: ActionType) {
 
+        console.log(action)
+
         if (action.type === "ADD-POST") {
             let post = this._state.profilePage.textFromTextArea;
             let newPost: PostDataType = {id: 5, message: post}
             this._state.profilePage.postData.push(newPost)
             this._state.profilePage.textFromTextArea = ""
             this._rerenderEntireTree()
-        } else if (action.type === "UPDATE-TEXT", action.updatedText) {
-            this._state.profilePage.textFromTextArea = action.updatedText
+        }
+        else if (action.type === "UPDATE-TEXT") {
+            if(action.updatedText) {
+                this._state.profilePage.textFromTextArea = action.updatedText
+                this._rerenderEntireTree()
+            }
+        }
+        else if (action.type === "ADD-MESSAGE") {
+            this._state.messagesPage.messages.push({id: 3, message: this._state.messagesPage.textFromTextArea})
+            this._state.messagesPage.textFromTextArea =""
             this._rerenderEntireTree()
         }
+        else if (action.type === "UPDATE-MESSAGE-TEXT") {
+
+            if(action.updatedMessageText) {
+                this._state.messagesPage.textFromTextArea = action.updatedMessageText
+                this._rerenderEntireTree()
+            }
+
+        }
+
+
 
     }
 }
@@ -100,3 +123,12 @@ export const updateTextActionCreator = (updatedText:string)=> (
 )
 
 export const addPostActionCreator = () => ({type:"ADD-POST"})
+
+export const updatedMessageTextActionCreator = (updatedMessageText: string) => (
+    {
+        type: "UPDATE-MESSAGE-TEXT",
+        updatedMessageText: updatedMessageText
+    }
+)
+
+export const addMessageActionCreator = () => ({type:"ADD-MESSAGE"})
