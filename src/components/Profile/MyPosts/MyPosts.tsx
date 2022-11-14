@@ -1,21 +1,40 @@
 import Post from "./Posts/Post";
 import {PostDataArr} from "../../../redux/state";
 import React, {ChangeEvent, useState} from 'react'
+import {ActionType, addPostActionCreator, StateType, updateTextActionCreator} from "../../../redux/store";
+
+
+
 
 type PropsType = {
-    postData: PostDataArr
-    addPost: (post:string)=>void;
+
+    state: StateType,
+    dispatch: (action:ActionType)=>void,
+
+
 }
+
+// const updateTextActionCreator = (updatedText:string)=> (
+//          {type:"UPDATE-TEXT", updatedText: updatedText}
+// )
+//
+// const addPostActionCreator = () => ({type:"ADD-POST"})
 
 const MyPosts = (props: PropsType) => {
 
-    const [post, setPost] = useState<string>("")
-    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=> {setPost(e.currentTarget.value)}
+
+    const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=> {
+
+        let updatedText = e.currentTarget.value
+
+        props.dispatch(updateTextActionCreator(updatedText))
+
+
+    }
 
     const addPost = () => {
+      props.dispatch(addPostActionCreator())
 
-        props.addPost(post)
-        console.log(post)
 
     }
 
@@ -25,9 +44,9 @@ const MyPosts = (props: PropsType) => {
       <h3>My posts</h3>
       <article>
 
-          <div><textarea onChange={onChangeHandler} value={post}></textarea></div>
+          <div><textarea onChange={onChangeHandler} value={props.state.profilePage.textFromTextArea}></textarea></div>
           <div><button onClick={addPost}>Add Post</button></div>
-        {props.postData.map(p=><Post id={p.id} message={p.message}/>)}
+        {props.state.profilePage.postData.map(p=><Post id={p.id} message={p.message}/>)}
 
       </article>
       </div>

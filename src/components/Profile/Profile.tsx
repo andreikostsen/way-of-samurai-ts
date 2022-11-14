@@ -1,19 +1,20 @@
 import React from 'react'
 import MyPosts from "./MyPosts/MyPosts";
 import {PostDataArr} from "../../redux/state";
+import {ActionType, StateType} from "../../redux/store";
+
 
 type PropsType = {
 
-  state: {postData: PostDataArr};
-    addPost: (post:string)=>void;
-
+  state: StateType,
+  dispatch: (action:ActionType)=>void,
 
 
 }
 
 const Profile = (props: PropsType) => {
   return (
-    <MyPosts postData={props.state.postData} addPost={props.addPost}/>
+      <MyPosts state={props.state} dispatch={props.dispatch}/>
   )
 }
 
