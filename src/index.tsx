@@ -15,7 +15,6 @@ export let rerenderEntireTree = () => {
             <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
 
 
-
         </React.StrictMode>,
         document.getElementById('root')
     );

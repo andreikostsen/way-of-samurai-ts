@@ -1,12 +1,15 @@
 import React from 'react'
 import MyPosts from "./MyPosts/MyPosts";
-import {PostDataArr} from "../../redux/state";
-import {ActionType, StateType} from "../../redux/store";
+import {PostDataArr} from "../../redux/store";
+import {ActionType} from "../../redux/store";
 
 
 type PropsType = {
 
-  state: StateType,
+  state: {
+  postData: PostDataArr,
+  textFromTextArea: string,
+}
   dispatch: (action:ActionType)=>void,
 
 

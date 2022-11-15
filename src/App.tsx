@@ -16,7 +16,6 @@ type PropsType = {
 
 
 
-
 const App = (props:PropsType) => {
     return (
 
@@ -25,9 +24,8 @@ const App = (props:PropsType) => {
                 <Header/>
                 <Sidebar/>
                 <Routes>
-
-                    <Route path="/profile"  element={<Profile state={props.state} dispatch={props.dispatch}/>} />
-                    <Route path="/dialogs"  element={<Dialogs state={props.state} dispatch={props.dispatch}/>} />
+                    <Route path="/profile"  element={<Profile state={props.state.profilePage} dispatch={props.dispatch}/>} />
+                    <Route path="/dialogs"  element={<Dialogs state={props.state.messagesPage} dispatch={props.dispatch}/>} />
                 </Routes>
 
             </div>

@@ -1,3 +1,5 @@
+import {messagesReducer} from "./messages-reducer";
+import {profileReducer} from "./profile-reducer";
 
 export type DialogsTypeArr = Array<DialogsType>
 
@@ -15,7 +17,7 @@ export type MessagesTypeArr = Array<MessagesType>
 
 export type PostDataArr = Array<PostDataType>
 
-    type PostDataType = {
+   export type PostDataType = {
     id: number,
     message: string
 }
@@ -84,51 +86,11 @@ export let store: StoreType = {
     },
     dispatch(action: ActionType) {
 
-        console.log(action)
-
-        if (action.type === "ADD-POST") {
-            let post = this._state.profilePage.textFromTextArea;
-            let newPost: PostDataType = {id: 5, message: post}
-            this._state.profilePage.postData.push(newPost)
-            this._state.profilePage.textFromTextArea = ""
-            this._rerenderEntireTree()
-        }
-        else if (action.type === "UPDATE-TEXT") {
-            if(action.updatedText) {
-                this._state.profilePage.textFromTextArea = action.updatedText
-                this._rerenderEntireTree()
-            }
-        }
-        else if (action.type === "ADD-MESSAGE") {
-            this._state.messagesPage.messages.push({id: 3, message: this._state.messagesPage.textFromTextArea})
-            this._state.messagesPage.textFromTextArea =""
-            this._rerenderEntireTree()
-        }
-        else if (action.type === "UPDATE-MESSAGE-TEXT") {
-
-            if(action.updatedMessageText) {
-                this._state.messagesPage.textFromTextArea = action.updatedMessageText
-                this._rerenderEntireTree()
-            }
-
-        }
-
-
+        profileReducer(this._state.profilePage, action)
+        messagesReducer(this._state.messagesPage, action)
+        this._rerenderEntireTree()
 
     }
 }
 
-export const updateTextActionCreator = (updatedText:string)=> (
-    {type:"UPDATE-TEXT", updatedText: updatedText}
-)
 
-export const addPostActionCreator = () => ({type:"ADD-POST"})
-
-export const updatedMessageTextActionCreator = (updatedMessageText: string) => (
-    {
-        type: "UPDATE-MESSAGE-TEXT",
-        updatedMessageText: updatedMessageText
-    }
-)
-
-export const addMessageActionCreator = () => ({type:"ADD-MESSAGE"})

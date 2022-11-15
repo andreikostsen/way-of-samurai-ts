@@ -1,13 +1,19 @@
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsTypeArr, MessagesTypeArr} from "../../redux/state";
+import {ActionType, DialogsTypeArr, MessagesTypeArr} from "../../redux/store";
 import React, {ChangeEvent} from 'react'
-import {ActionType, addMessageActionCreator, StateType, updatedMessageTextActionCreator} from "../../redux/store";
+import {addMessageActionCreator, updatedMessageTextActionCreator} from "../../redux/messages-reducer";
+
 
 type PropsType = {
 
-    state: StateType,
+    state: {
+        dialogs: DialogsTypeArr,
+        messages: MessagesTypeArr,
+        textFromTextArea: string,
+
+    },
 
     dispatch: (action:ActionType)=>void,
 
@@ -25,8 +31,7 @@ type PropsType = {
 
 
       const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-// debugger
-        // let updatedMessageText= e.currentTarget.value;
+
         props.dispatch(updatedMessageTextActionCreator(e.currentTarget.value))
 
     }
@@ -38,7 +43,7 @@ type PropsType = {
 
                 <div className={s.items}>
 
-                    {props.state.messagesPage.dialogs.map(n=>
+                    {props.state.dialogs.map(n=>
                         <DialogItem name={n.name}/>
 
                     )}
@@ -47,10 +52,10 @@ type PropsType = {
                 </div>
                 <div className={s.messages}>
 
-                    <div><textarea onChange={onChangeHandler} value={props.state.messagesPage.textFromTextArea}></textarea></div>
+                    <div><textarea onChange={onChangeHandler} value={props.state.textFromTextArea}></textarea></div>
                     <div><button onClick={onClickHandler}>Send message</button></div>
 
-                    {props.state.messagesPage.messages.map(m=><Message message={m.message}/>)}
+                    {props.state.messages.map(m=><Message message={m.message}/>)}
 
 
                 </div>
