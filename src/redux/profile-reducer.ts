@@ -6,7 +6,17 @@ type StateType = {
     textFromTextArea: string
 }
 
-export const profileReducer = (state: StateType, action:ActionType) => {
+const initialState =  {
+    postData: [
+        {id: 1, message: "HI"},
+        {id: 2, message: "How are you?"},
+        {id: 3, message: "Thanks"}
+    ],
+        textFromTextArea: ""
+}
+
+
+export const profileReducer = (state: StateType = initialState, action:ActionType) => {
 
 switch (action.type) {
 

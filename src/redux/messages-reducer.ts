@@ -7,7 +7,19 @@ type StateType = {
 }
 
 
-export const messagesReducer = (state:StateType, action:ActionType) => {
+const initialState = {
+    dialogs: [
+        {id: 1, name: "Andrei"},
+        {id: 2, name: "Valera"},
+    ],
+        messages: [
+        {id: 1, message: "Hello"},
+        {id: 2, message: "How are you"},
+    ],
+        textFromTextArea: "",
+}
+
+export const messagesReducer = (state:StateType = initialState, action:ActionType) => {
 
     switch (action.type) {
 
