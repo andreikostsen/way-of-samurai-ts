@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
 import {ActionType} from "./redux/store";
 import {AppRootStateType} from "./redux/redux-store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type PropsType = {
@@ -25,8 +26,8 @@ const App = (props:PropsType) => {
                 <Header/>
                 <Sidebar/>
                 <Routes>
-                    <Route path="/profile"  element={<Profile state={props.state.profileReducer} dispatch={props.dispatch}/>} />
-                    <Route path="/dialogs"  element={<Dialogs state={props.state.messagesReducer} dispatch={props.dispatch}/>} />
+                    <Route path="/profile"  element={<Profile state={props.state.profilePage} dispatch={props.dispatch}/>} />
+                    <Route path="/dialogs"  element={<DialogsContainer state={props.state.messagesPage} dispatch={props.dispatch}/>} />
                 </Routes>
 
             </div>

@@ -12,8 +12,8 @@ type PropsType = {
         postData: PostDataArr,
         textFromTextArea: string,
     },
-    dispatch: (action:ActionType)=>void,
-
+    onChange: (updatedText:string)=>void,
+    addPost: ()=>void,
 
 }
 
@@ -21,18 +21,12 @@ const MyPosts = (props: PropsType) => {
 
 
     const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=> {
-
         let updatedText = e.currentTarget.value
-
-        props.dispatch(updateTextActionCreator(updatedText))
-
-
+        props.onChange(updatedText)
     }
 
     const addPost = () => {
-      props.dispatch(addPostActionCreator())
-
-
+        props.addPost()
     }
 
 
@@ -40,7 +34,6 @@ const MyPosts = (props: PropsType) => {
       <div>
       <h3>My posts</h3>
       <article>
-
           <div><textarea onChange={onChangeHandler} value={props.state.textFromTextArea}></textarea></div>
           <div><button onClick={addPost}>Add Post</button></div>
         {props.state.postData.map(p=><Post id={p.id} message={p.message}/>)}

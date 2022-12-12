@@ -12,10 +12,9 @@ type PropsType = {
         dialogs: DialogsTypeArr,
         messages: MessagesTypeArr,
         textFromTextArea: string,
-
     },
-
-    dispatch: (action:ActionType)=>void,
+    onClick: ()=>void,
+    onChange: (updatedMessageText:string)=>void,
 
 }
 
@@ -25,14 +24,13 @@ type PropsType = {
 
     const onClickHandler = () => {
 
-        props.dispatch(addMessageActionCreator())
+      props.onClick()
 
     }
 
 
       const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-
-        props.dispatch(updatedMessageTextActionCreator(e.currentTarget.value))
+          props.onChange(e.currentTarget.value)
 
     }
 

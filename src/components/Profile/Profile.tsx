@@ -1,7 +1,8 @@
 import React from 'react'
-import MyPosts from "./MyPosts/MyPosts";
 import {PostDataArr} from "../../redux/store";
 import {ActionType} from "../../redux/store";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import store from "../../redux/redux-store";
 
 
 type PropsType = {
@@ -15,9 +16,9 @@ type PropsType = {
 
 }
 
-const Profile = (props: PropsType) => {
+const Profile = (props:PropsType) => {
   return (
-      <MyPosts state={props.state} dispatch={props.dispatch}/>
+      <MyPostsContainer state={props.state} dispatch={props.dispatch}/>
   )
 }
 

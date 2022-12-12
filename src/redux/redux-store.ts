@@ -4,8 +4,8 @@ import {messagesReducer} from "./messages-reducer";
 
 let reducers = combineReducers(
     {
-        messagesReducer,
-        profileReducer,
+        messagesPage: messagesReducer,
+        profilePage:profileReducer,
     }
 )
 
