@@ -4,19 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store, {AppRootStateType} from "./redux/redux-store";
+import StoreContext from "./StoreContext";
 
 
-export let rerenderEntireTree = (state:AppRootStateType) => {
+export let rerenderEntireTree = (state: AppRootStateType) => {
 
 
     ReactDOM.render(
+        <StoreContext.Provider value={store}>
+            {/*<App state={state} dispatch={store.dispatch.bind(store)}/>*/}
+            <App />
 
-                <React.StrictMode>
-            <App state= {state} dispatch={store.dispatch.bind(store)}/>
-
-
-
-        </React.StrictMode>,
+</StoreContext.Provider>,
         document.getElementById('root')
     );
 

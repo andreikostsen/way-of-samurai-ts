@@ -6,19 +6,19 @@ import store from "../../redux/redux-store";
 
 
 type PropsType = {
-
-  state: {
-  postData: PostDataArr,
-  textFromTextArea: string,
-}
-  dispatch: (action:ActionType)=>void,
+//
+//   state: {
+//   postData: PostDataArr,
+//   textFromTextArea: string,
+// }
+//   dispatch: (action:ActionType)=>void,
 
 
 }
 
 const Profile = (props:PropsType) => {
   return (
-      <MyPostsContainer state={props.state} dispatch={props.dispatch}/>
+      <MyPostsContainer/>
   )
 }
 

@@ -12,8 +12,9 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type PropsType = {
-    state: AppRootStateType,
-    dispatch: (action:ActionType)=>void,
+    // state: AppRootStateType,
+    // dispatch: (action:ActionType)=>void,
+
 }
 
 
@@ -26,8 +27,8 @@ const App = (props:PropsType) => {
                 <Header/>
                 <Sidebar/>
                 <Routes>
-                    <Route path="/profile"  element={<Profile state={props.state.profilePage} dispatch={props.dispatch}/>} />
-                    <Route path="/dialogs"  element={<DialogsContainer state={props.state.messagesPage} dispatch={props.dispatch}/>} />
+                    <Route path="/profile"  element={<Profile />} />
+                    <Route path="/dialogs"  element={<DialogsContainer />} />
                 </Routes>
 
             </div>

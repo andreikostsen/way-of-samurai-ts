@@ -30,6 +30,7 @@ type PropsType = {
 
 
         return(
+
             <Dialogs state={props.state} onClick={onClickHandler} onChange={onChangeHandler}/>
     )
 
