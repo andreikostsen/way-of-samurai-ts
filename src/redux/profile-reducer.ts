@@ -6,13 +6,13 @@ type StateType = {
     textFromTextArea: string
 }
 
-const initialState =  {
+const initialState = {
     postData: [
         {id: 1, message: "HI"},
         {id: 2, message: "How are you?"},
         {id: 3, message: "Thanks"}
     ],
-        textFromTextArea: ""
+    textFromTextArea: ""
 }
 
 
@@ -21,19 +21,21 @@ export const profileReducer = (state: StateType = initialState, action:ActionTyp
 switch (action.type) {
 
     case "ADD-POST":
-            let post = state.textFromTextArea;
+        let newState={...state}
+            let post = newState.textFromTextArea;
             let newPost: PostDataType = {id: 5, message: post}
-            state.postData.push(newPost)
-            state.textFromTextArea = ""
-            return state;
+        newState.postData.push(newPost)
+        newState.textFromTextArea = ""
+            return newState;
 
 
     case "UPDATE-TEXT":
+        let newState1={...state}
             if(action.updatedText) {
-                state.textFromTextArea = action.updatedText
+                newState1.textFromTextArea = action.updatedText
             }
 
-        return state;
+        return newState1;
 
     default:
         return state;

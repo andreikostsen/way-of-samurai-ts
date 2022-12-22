@@ -12,11 +12,11 @@ const initialState = {
         {id: 1, name: "Andrei"},
         {id: 2, name: "Valera"},
     ],
-        messages: [
+    messages: [
         {id: 1, message: "Hello"},
         {id: 2, message: "How are you"},
     ],
-        textFromTextArea: "",
+    textFromTextArea: "",
 }
 
 export const messagesReducer = (state:StateType = initialState, action:ActionType) => {
@@ -24,16 +24,18 @@ export const messagesReducer = (state:StateType = initialState, action:ActionTyp
     switch (action.type) {
 
         case "ADD-MESSAGE":
-            state.messages.push({id: 3, message: state.textFromTextArea})
-            state.textFromTextArea = ""
-            return state
+            let newState={...state}
+            newState.messages.push({id: 3, message: newState.textFromTextArea})
+            newState.textFromTextArea = ""
+            return newState
 
         case "UPDATE-MESSAGE-TEXT":
+            let newState1={...state}
             if (action.updatedMessageText) {
-                state.textFromTextArea = action.updatedMessageText
+                newState1.textFromTextArea = action.updatedMessageText
 
             }
-            return state
+            return newState1
 
         default:
             return state
