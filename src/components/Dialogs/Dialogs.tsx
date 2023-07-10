@@ -7,12 +7,15 @@ import {addMessageActionCreator, updatedMessageTextActionCreator} from "../../re
 
 
 type PropsType = {
-
-    state: {
-        dialogs: DialogsTypeArr,
-        messages: MessagesTypeArr,
-        textFromTextArea: string,
-    },
+    dialogs: DialogsTypeArr,
+    textFromTextArea: string,
+    messages: MessagesTypeArr,
+    //
+    // state: {
+    //     dialogs: DialogsTypeArr,
+    //
+    //
+    // },
     onClick: ()=>void,
     onChange: (updatedMessageText:string)=>void,
 
@@ -41,7 +44,7 @@ type PropsType = {
 
                 <div className={s.items}>
 
-                    {props.state.dialogs.map(n=>
+                    {props.dialogs.map(n=>
                         <DialogItem name={n.name}/>
 
                     )}
@@ -50,10 +53,10 @@ type PropsType = {
                 </div>
                 <div className={s.messages}>
 
-                    <div><textarea onChange={onChangeHandler} value={props.state.textFromTextArea}></textarea></div>
+                    <div><textarea onChange={onChangeHandler} value={props.textFromTextArea}></textarea></div>
                     <div><button onClick={onClickHandler}>Send message</button></div>
 
-                    {props.state.messages.map(m=><Message message={m.message}/>)}
+                    {props.messages.map(m=><Message message={m.message}/>)}
 
 
                 </div>

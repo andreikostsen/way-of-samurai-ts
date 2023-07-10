@@ -1,49 +1,51 @@
 import React from 'react'
-import {addMessageActionCreator, updatedMessageTextActionCreator} from "../../redux/messages-reducer";
 import Dialogs from "./Dialogs";
-
-import {connect} from "react-redux";
-import {AppRootStateType} from "../../redux/redux-store";
-
+import {ActionType, DialogsTypeArr, MessagesTypeArr} from "../../redux/store";
+import {addMessageActionCreator, updatedMessageTextActionCreator} from "../../redux/messages-reducer";
 
 
-//  const DialogsContainer=()=> {
-//         return(
-//             <StoreContext.Consumer>
-//                 {
-//                     (store)=>{
-//                         const onClickHandler = () => {
-//                             store.dispatch(addMessageActionCreator())
-//                         }
-//                         const onChangeHandler = (updatedMessageText:string) => {
-//                             store.dispatch(updatedMessageTextActionCreator(updatedMessageText))
-//                         }
-//                         return <Dialogs state={store.getState().messagesPage} onClick={onClickHandler} onChange={onChangeHandler}/>
-//                     }
-//                 }
-//             </StoreContext.Consumer>
-//     )
-// }
 
 
-let mapStateToProps = (state: AppRootStateType) => {
-    return {
-        state: state.messagesPage
-    }
+type PropsType = {
 
-};
+    state: {
+        dialogs: DialogsTypeArr,
+        messages: MessagesTypeArr,
+        textFromTextArea: string,
 
-let mapDispatchToProps = (dispatch: any) => {
-    return {
-        onClick: () => {dispatch(addMessageActionCreator())},
-        onChange: (updatedMessageText: string) => {dispatch(updatedMessageTextActionCreator(updatedMessageText))}
+    },
+
+    dispatch: (action:ActionType)=>void,
+
+}
+
+export const DialogsContainer=(props:PropsType)=>{
+
+    const addMessage = () => {
+
+        props.dispatch(addMessageActionCreator())
 
     }
 
-};
+
+    const updateMessageText = (updatedMessageText:string) => {
+
+        props.dispatch(updatedMessageTextActionCreator(updatedMessageText))
+
+    }
 
 
+    return (
 
-const DialogsContainer =  connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+        <Dialogs dialogs={props.state.dialogs}
+                 textFromTextArea={props.state.textFromTextArea}
+                 messages={props.state.messages}
+                 // addMessage={addMessage}
+                 // updateMessageText={updateMessageText}
+                 onClick={addMessage}
+                 onChange={updateMessageText}
+        />
 
-export default DialogsContainer;
+    )
+
+}

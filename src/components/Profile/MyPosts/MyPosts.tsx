@@ -8,10 +8,11 @@ import {AppRootStateType} from "../../../redux/redux-store";
 
 
 type PropsType = {
-
-    state: AppRootStateType,
+    postData: PostDataArr,
+    // state: AppRootStateType,
     onChange: (updatedText:string)=>void,
     addPost: ()=>void,
+    textFromTextArea: string,
 
 }
 
@@ -32,9 +33,9 @@ const MyPosts = (props: PropsType) => {
       <div>
       <h3>My posts</h3>
       <article>
-          <div><textarea onChange={onChangeHandler} value={props.state.profilePage.textFromTextArea}></textarea></div>
+          <div><textarea onChange={onChangeHandler} value={props.textFromTextArea}></textarea></div>
           <div><button onClick={addPost}>Add Post</button></div>
-        {props.state.profilePage.postData.map(p=><Post id={p.id} message={p.message}/>)}
+        {props.postData.map(p=><Post id={p.id} message={p.message}/>)}
 
       </article>
       </div>

@@ -1,29 +1,18 @@
-import {combineReducers} from "redux";
-import {profileReducer} from "./profile-reducer";
+import {combineReducers, legacy_createStore as createStore} from "redux";
 import {messagesReducer} from "./messages-reducer";
-import { configureStore } from '@reduxjs/toolkit'
-//
-// let reducers = combineReducers(
-//     {
-//         messagesPage: messagesReducer,
-//         profilePage:profileReducer,
-//     }
-// )
+import {profileReducer} from "./profile-reducer";
 
-let store = configureStore({
 
-    reducer: {
-        messagesPage: messagesReducer,
-        profilePage:profileReducer,
-
-    }
+const rootReducers = combineReducers({
+    messagesPage: messagesReducer,
+    profilePage: profileReducer
 }
-
-
 )
 
-// export type AppRootStateType = ReturnType<typeof reducers>
-export type AppRootStateType = ReturnType<typeof store.getState>
+export const store = createStore(rootReducers)
 
+export type AppRootStateType = ReturnType<typeof rootReducers>
 
-export default store
+// @ts-ignore
+window.store = store
+

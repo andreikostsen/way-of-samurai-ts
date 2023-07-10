@@ -3,8 +3,8 @@ import React from 'react'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store, {AppRootStateType} from "./redux/redux-store";
 import {Provider} from "react-redux";
+import {AppRootStateType, store} from "./redux/redux-store";
 
 
 export let rerenderEntireTree = (state: AppRootStateType) => {
