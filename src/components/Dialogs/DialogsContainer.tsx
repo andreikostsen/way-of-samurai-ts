@@ -1,51 +1,34 @@
 import React from 'react'
 import Dialogs from "./Dialogs";
-import {ActionType, DialogsTypeArr, MessagesTypeArr} from "../../redux/store";
 import {addMessageActionCreator, updatedMessageTextActionCreator} from "../../redux/messages-reducer";
+import {connect} from "react-redux";
+import {AppRootStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
 
 
 
 
-type PropsType = {
+const mapStateToProps = (state: AppRootStateType) => {
 
-    state: {
-        dialogs: DialogsTypeArr,
-        messages: MessagesTypeArr,
-        textFromTextArea: string,
-
-    },
-
-    dispatch: (action:ActionType)=>void,
-
-}
-
-export const DialogsContainer=(props:PropsType)=>{
-
-    const addMessage = () => {
-
-        props.dispatch(addMessageActionCreator())
-
+    return {
+        dialogsPage: state.messagesPage
     }
 
 
-    const updateMessageText = (updatedMessageText:string) => {
+}
 
-        props.dispatch(updatedMessageTextActionCreator(updatedMessageText))
+const mapDispatchToProps = (dispatch: Dispatch) => {
 
+    return {
+        addMessage: () => {
+            dispatch(addMessageActionCreator())
+        },
+        updateMessageText: (updatedMessageText:string) => {
+            dispatch(updatedMessageTextActionCreator(updatedMessageText))
+        }
     }
 
-
-    return (
-
-        <Dialogs dialogs={props.state.dialogs}
-                 textFromTextArea={props.state.textFromTextArea}
-                 messages={props.state.messages}
-                 // addMessage={addMessage}
-                 // updateMessageText={updateMessageText}
-                 onClick={addMessage}
-                 onChange={updateMessageText}
-        />
-
-    )
-
 }
+
+
+export const DialogsContainer = connect (mapStateToProps, mapDispatchToProps) (Dialogs)

@@ -13,11 +13,6 @@ import {useDispatch} from "react-redux";
 
 const App = () => {
 
-    let stateForProfile = store.getState().profilePage
-    let stateForDialogs = store.getState().messagesPage
-
-   const dispatch = useDispatch()
-
     return (
 
         <BrowserRouter>
@@ -25,8 +20,8 @@ const App = () => {
                 <Header/>
                 <Sidebar/>
                 <Routes>
-                    <Route path="/profile"  element={<Profile state={stateForProfile} dispatch={dispatch} /> } />
-                    <Route path="/dialogs"  element={<DialogsContainer state={stateForDialogs} dispatch={dispatch}/>} />
+                    <Route path="/profile"  element={<Profile /> } />
+                    <Route path="/dialogs"  element={<DialogsContainer />} />
                 </Routes>
 
             </div>

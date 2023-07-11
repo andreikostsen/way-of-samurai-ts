@@ -1,6 +1,6 @@
 import {ActionType, PostDataArr, PostDataType} from "./store";
 
-type StateType = {
+export type ProfileStateType = {
 
     postData: PostDataArr,
     textFromTextArea: string
@@ -16,12 +16,14 @@ const initialState = {
 }
 
 
-export const profileReducer = (state: StateType = initialState, action:ActionType) => {
+export const profileReducer = (state: ProfileStateType = initialState, action:ActionType) => {
 
 switch (action.type) {
 
     case "ADD-POST":
         let newState={...state}
+        newState.postData = [...state.postData]
+
             let post = newState.textFromTextArea;
             let newPost: PostDataType = {id: 5, message: post}
         newState.postData.push(newPost)

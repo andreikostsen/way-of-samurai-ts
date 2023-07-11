@@ -1,6 +1,6 @@
 import {ActionType, DialogsTypeArr, MessagesTypeArr} from "./store";
 
-type StateType = {
+export type MessagesStateType = {
         dialogs: DialogsTypeArr,
         messages: MessagesTypeArr,
         textFromTextArea: string,
@@ -11,6 +11,7 @@ const initialState = {
     dialogs: [
         {id: 1, name: "Andrei"},
         {id: 2, name: "Valera"},
+        {id: 3, name: "Ian"},
     ],
     messages: [
         {id: 1, message: "Hello"},
@@ -19,7 +20,7 @@ const initialState = {
     textFromTextArea: "",
 }
 
-export const messagesReducer = (state:StateType = initialState, action:ActionType) => {
+export const messagesReducer = (state:MessagesStateType = initialState, action:ActionType) => {
 
     switch (action.type) {
 

@@ -1,66 +1,52 @@
 import s from "./Dialogs.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionType, DialogsTypeArr, MessagesTypeArr} from "../../redux/store";
 import React, {ChangeEvent} from 'react'
-import {addMessageActionCreator, updatedMessageTextActionCreator} from "../../redux/messages-reducer";
+import {MessagesStateType} from "../../redux/messages-reducer";
 
 
 type PropsType = {
-    dialogs: DialogsTypeArr,
-    textFromTextArea: string,
-    messages: MessagesTypeArr,
-    //
-    // state: {
-    //     dialogs: DialogsTypeArr,
-    //
-    //
-    // },
-    onClick: ()=>void,
-    onChange: (updatedMessageText:string)=>void,
-
+    dialogsPage: MessagesStateType,
+    addMessage: () => void,
+    updateMessageText: (updatedMessageText: string) => void,
 }
 
 
-
- const Dialogs=(props: PropsType)=> {
-
+const Dialogs = (props: PropsType) => {
     const onClickHandler = () => {
-
-      props.onClick()
-
+        props.addMessage()
     }
 
 
-      const onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-          props.onChange(e.currentTarget.value)
-
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateMessageText(e.currentTarget.value)
     }
 
 
-        return(
+    return (
 
-             <div className={s.wrapper}>
+        <div className={s.wrapper}>
 
-                <div className={s.items}>
+            <div className={s.items}>
 
-                    {props.dialogs.map(n=>
-                        <DialogItem name={n.name}/>
-
-                    )}
-
-
-                </div>
-                <div className={s.messages}>
-
-                    <div><textarea onChange={onChangeHandler} value={props.textFromTextArea}></textarea></div>
-                    <div><button onClick={onClickHandler}>Send message</button></div>
-
-                    {props.messages.map(m=><Message message={m.message}/>)}
+                {props.dialogsPage.dialogs.map(n =>
+                    <DialogItem name={n.name}/>
+                )}
 
 
-                </div>
             </div>
+            <div className={s.messages}>
+
+                <div><textarea onChange={onChangeHandler} value={props.dialogsPage.textFromTextArea}></textarea></div>
+                <div>
+                    <button onClick={onClickHandler}>Send message</button>
+                </div>
+
+                {props.dialogsPage.messages.map(m => <Message message={m.message}/>)}
+
+
+            </div>
+        </div>
 
     )
 
