@@ -5,16 +5,12 @@ import Profile from './components/Profile/Profile';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {AppRootStateType, store} from "./redux/redux-store";
-import {useDispatch} from "react-redux";
-
-
+import {Users} from "./components/Users/Users";
 
 
 const App = () => {
 
     return (
-
         <BrowserRouter>
             <div id="wrapper">
                 <Header/>
@@ -22,12 +18,11 @@ const App = () => {
                 <Routes>
                     <Route path="/profile"  element={<Profile /> } />
                     <Route path="/dialogs"  element={<DialogsContainer />} />
+                    <Route path="/users"  element={<Users />} />
                 </Routes>
-
             </div>
        </BrowserRouter>
     )
-        ;
 }
 
 
